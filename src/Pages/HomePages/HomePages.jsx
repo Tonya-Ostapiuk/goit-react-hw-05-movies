@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {  Outlet, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { trendingMovies } from '../../services/MoviesApi';
-import {  LinkStyled } from './HomePages.styled'
+import {  LinkStyled } from './HomePages.styled';
 
 export const HomePages = () => {
   const [movies, setMovies] = useState(null);
@@ -11,7 +11,7 @@ export const HomePages = () => {
 
   function fetchMovies(page) {
     trendingMovies(page).then(setMovies);
-  }
+  };
 
   useEffect(() => {
     fetchMovies(page);
@@ -24,8 +24,7 @@ export const HomePages = () => {
     <ul>
       {movies.map(movie => {
         return (
-          <li key={movie.id}>
-            
+          <li key={movie.id}>  
             <LinkStyled to={`/movies/${movie.id}`}state={{ search: `${location.pathname}${location.search}` }}>{movie.title || movie.name}</LinkStyled>
           </li>
         );

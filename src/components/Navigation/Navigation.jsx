@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import { NavLi, UlStyled } from './Navigation.styled'
 
 
@@ -13,9 +12,6 @@ return (
             <li>
                 <NavLi to='movies'>Movies</NavLi>
             </li>
-            {/* <li>
-                <NavLi to='search'>Search</NavLi>
-            </li> */}
 
         </UlStyled>
     </nav>
