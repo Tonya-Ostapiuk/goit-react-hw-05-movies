@@ -37,3 +37,10 @@ export const ImgStyled = styled.img `
  display: block;
  margin-left: 39px;
 `
+export const ContainerStylInf = styled.div `
+
+padding-bottom: 12px;
+  border-bottom: 1px solid #bbb7b7;
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
+`

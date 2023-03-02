@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import {  Outlet, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { trendingMovies } from '../../services/MoviesApi';
 import {  LinkStyled } from './HomePages.styled'
 
 export const HomePages = () => {
   const [movies, setMovies] = useState(null);
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const location = useLocation();
 
   function fetchMovies(page) {
@@ -25,7 +26,7 @@ export const HomePages = () => {
         return (
           <li key={movie.id}>
             
-            <LinkStyled to={`${movie.id}`}state={{ search: `${location.pathname}${location.search}` }}>{movie.title}</LinkStyled>
+            <LinkStyled to={`/movies/${movie.id}`}state={{ search: `${location.pathname}${location.search}` }}>{movie.title || movie.name}</LinkStyled>
           </li>
         );
       })}
@@ -34,5 +35,15 @@ export const HomePages = () => {
     </>)
   );
 }
+HomePages.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      poster_path: PropTypes.string,
+    })
+  ),
+};
+
 
 

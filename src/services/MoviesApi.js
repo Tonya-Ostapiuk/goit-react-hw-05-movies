@@ -22,14 +22,17 @@ export async function detailesMovies (id){
 
 };
 
-export async function creditsMovies (){
-    const response = await axios()
-    return response.data.results
+export async function creditsMovies (id){
+    const response = await axios(`/movie/${id}/credits`, { params: { api_key: KEY,  } })
+
+    return response.data.cast
 
 };
 
-export async function reviewsMovies (){
-    const response = await axios()
+
+export async function reviewsMovies (id, page){
+    const response = await axios(`/movie/${id}/reviews`, { params: { api_key: KEY, page } })
+
     return response.data.results
 
 };

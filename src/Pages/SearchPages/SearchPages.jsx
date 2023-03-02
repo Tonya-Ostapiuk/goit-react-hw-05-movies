@@ -1,7 +1,8 @@
-import {  useSearchParams, Outlet, useLocation } from 'react-router-dom';
+import { useSearchParams, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { searchMovies } from '../../services/MoviesApi';
-import { LinkStyled, InputStyled, BtnStyled } from './SearchPages.Styled'
+import { LinkStyled, InputStyled, BtnStyled } from './SearchPages.Styled';
 
 export const SearchPages = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,13 +30,11 @@ export const SearchPages = () => {
         <>
           <ul>
             {movies.map(movie => {
-              //  console.log(movie)
               return (
                 <li key={movie.id}>
                   <LinkStyled
-                    to={`${movie.id}/details`}
-                    state={{ search: `${location.pathname}${location.search}` }}
-                  >
+                    to={`${movie.id}`}
+                    state={{ search: `${location.pathname}${location.search}` }}>
                     {movie.title}
                   </LinkStyled>
                 </li>
@@ -47,4 +46,14 @@ export const SearchPages = () => {
       )}
     </>
   );
+};
+
+SearchPages.propTypes = {
+  movie: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+    
+    })
+  ),
 };
