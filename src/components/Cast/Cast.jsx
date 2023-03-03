@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { creditsMovies } from '../../services/MoviesApi';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { NotHStyled,ListImg } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
     const [cast, setCast] = useState([]);
     const { id } = useParams();
     const base_img_url = 'https://image.tmdb.org/t/p/w500';
@@ -44,11 +43,7 @@ export const Cast = () => {
   )
 }
 
-Cast.propTypes = {
-  profile_path: PropTypes.string,
-  name: PropTypes.string,
-  character: PropTypes.string,
-  cast_id: PropTypes.number,
-};
+export default Cast;
+
 
 

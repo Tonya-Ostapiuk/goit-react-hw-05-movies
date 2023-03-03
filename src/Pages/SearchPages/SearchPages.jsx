@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { searchMovies } from '../../services/MoviesApi';
 import { LinkStyled, InputStyled, BtnStyled } from './SearchPages.Styled';
 
-export const SearchPages = () => {
+const SearchPages = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState();
   const getParams = searchParams.get('query');
@@ -47,6 +47,8 @@ export const SearchPages = () => {
     </>
   );
 };
+
+export default SearchPages;
 
 SearchPages.propTypes = {
   movie: PropTypes.arrayOf(

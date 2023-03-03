@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { reviewsMovies } from '../../services/MoviesApi';
 import { NotHStyled } from './Reviews.styled';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [review, setReview] = useState([]);
   const { id } = useParams();
 
@@ -30,8 +29,4 @@ export const Reviews = () => {
   );
 };
 
-Reviews.propTypes = {
-  author: PropTypes.string,
-  content: PropTypes.string,
-  id: PropTypes.number,
-};
+export default Reviews;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import { useParams, useLocation, useNavigate, Link, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { detailesMovies } from '../../services/MoviesApi';
@@ -10,7 +11,7 @@ import {
   ImgStyled,
 } from './MoviesDetailesPage.styled';
 
-export const MoviesDetailesPage = () => {
+const MoviesDetailesPage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   const location = useLocation();
@@ -36,7 +37,12 @@ export const MoviesDetailesPage = () => {
         </BtnStyled>
         <ContainerStyled>
           <ImgStyled
-            src={`${base_img_url}${poster_path}`}
+            src={
+              poster_path
+                ? `${base_img_url}${poster_path}`
+                : 'https://t4.ftcdn.net/jpg/04/70/29/97/240_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'
+            }
+            // src={`${base_img_url}${poster_path}`}
             alt="poster"
             width="250"
             height="350"
@@ -72,12 +78,17 @@ export const MoviesDetailesPage = () => {
               </Link>
             </li>
           </ul>
-          <Outlet />
+          <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
         </ContainerStylInf>
       </>
     )
   );
 };
+
+export default MoviesDetailesPage;
+
 MoviesDetailesPage.propTypes = {
   movie: PropTypes.arrayOf(
     PropTypes.shape({

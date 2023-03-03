@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Suspense } from 'react';
 import {  Outlet, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { trendingMovies } from '../../services/MoviesApi';
 import {  LinkStyled } from './HomePages.styled';
 
-export const HomePages = () => {
+const HomePages = () => {
   const [movies, setMovies] = useState(null);
   const [page] = useState(1);
   const location = useLocation();
@@ -30,10 +31,14 @@ export const HomePages = () => {
         );
       })}
     </ul>
-    <Outlet/>
+    <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </>)
   );
 }
+export default HomePages;
+
 HomePages.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({

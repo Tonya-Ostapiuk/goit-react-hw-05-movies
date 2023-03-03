@@ -1,10 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
+import { lazy } from "react";
 import { Layout } from './Layout/Layout';
-import { HomePages } from '../Pages/HomePages/HomePages';
-import { SearchPages } from '../Pages/SearchPages/SearchPages';
-import { MoviesDetailesPage } from '../Pages/DetailesPage/MoviesDetailesPage';
-import { Cast } from './Cast/Cast';
-import { Reviews } from './Reviews/Reviews';
+// import { Cast } from './Cast/Cast';
+// import { Reviews } from './Reviews/Reviews';
+
+const HomePages = lazy(() => import("../Pages/HomePages/HomePages"));
+const SearchPages = lazy(() => import("../Pages/SearchPages/SearchPages"));
+const MoviesDetailesPage = lazy(() => import("../Pages/DetailesPage/MoviesDetailesPage"));
+const Cast = lazy(() => import("./Cast/Cast"));
+const Reviews = lazy(() => import("./Reviews/Reviews"));
+
 
 export const App = () => {
   return (
@@ -12,7 +17,6 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePages />}></Route>
-
           <Route path="movies" element={<SearchPages />}></Route>
           <Route path="movies/:id" element={<MoviesDetailesPage />}>
             <Route path="cast" element={<Cast />} />
